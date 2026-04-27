@@ -1,0 +1,27 @@
+<div class="faq-container">
+  <div class="faq-header">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+    <p class="faq-subtitle">Everything you need to know about ChatOPni.</p>
+  </div>
+
+  <div class="faq-list">
+    @for (qa of questions; track qa.id) {
+      <div class="faq-item" [class.faq-item--open]="openItemId() === qa.id">
+        <button class="faq-question" (click)="toggleItem(qa.id)" [attr.aria-expanded]="openItemId() === qa.id">
+          <span>{{ qa.question }}</span>
+          <div class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5" [attr.stroke-dasharray]="openItemId() === qa.id ? '24' : '0'" [style.transition]="'stroke-dasharray 0.3s ease'" />
+              <path d="M12 5v14" [attr.stroke-dasharray]="openItemId() === qa.id ? '0' : '24'" [style.transition]="'stroke-dasharray 0.3s ease'" />
+            </svg>
+          </div>
+        </button>
+        <div class="faq-answer-wrapper" [class.faq-answer-wrapper--open]="openItemId() === qa.id">
+          <div class="faq-answer-inner">
+            <p>{{ qa.answer }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
