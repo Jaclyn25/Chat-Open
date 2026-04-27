@@ -77,8 +77,22 @@ export class ChatPreviewService {
       );
       if (charIndex >= fullText.length) {
         clearInterval(interval);
-        onComplete();
+        if (onComplete) onComplete();
       }
     }, CHAR_DELAY);
+  }
+
+  // AI Playground Methods
+  addUserMessage(text: string): void {
+    const msg: IChatMessage = { id: this.nextId++, sender: 'user', text, isTyping: false };
+    this._messages.update(msgs => [...msgs, msg]);
+  }
+
+  simulateResponseStream(fullText: string): void {
+    this._isTyping.set(true);
+    setTimeout(() => {
+      this._isTyping.set(false);
+      this.typeMessage('bot', fullText, () => {});
+    }, TYPING_PAUSE);
   }
 }
