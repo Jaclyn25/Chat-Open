@@ -59,6 +59,12 @@ export const routes: Routes = [
       import('./pages/about-page/about-page').then((m) => m.AboutPageComponent),
     data: { animation: 'AboutPage' }
   },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./pages/contact-page/contact-page').then((m) => m.ContactPageComponent),
+    data: { animation: 'ContactPage' }
+  },
   // 8. Settings / Profile (Protected)
   {
     path: 'profile',
