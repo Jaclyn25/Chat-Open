@@ -4,13 +4,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FeatureService } from '../../services/feature.service';
 import { NavbarComponent } from '../../components/navbar/navbar';
-import { FooterComponent } from '../../components/footer/footer';
+
 import { CustomButtonComponent } from '../../components/shared/custom-button/custom-button';
 
 @Component({
   selector: 'app-feature-detail-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent, FooterComponent, CustomButtonComponent],
+  imports: [CommonModule, RouterLink, NavbarComponent, CustomButtonComponent],
   templateUrl: './feature-detail-page.html',
   styleUrl: './feature-detail-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush
