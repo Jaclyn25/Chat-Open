@@ -6,7 +6,7 @@ import { FeaturesSectionComponent } from '../../components/features-section/feat
 import { PricingSectionComponent } from '../../components/pricing-section/pricing-section';
 import { TestimonialsComponent } from '../../components/testimonials/testimonials';
 import { ContactSectionComponent } from '../../components/contact-section/contact-section';
-import { FooterComponent } from '../../components/footer/footer';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -18,8 +18,7 @@ import { FooterComponent } from '../../components/footer/footer';
     FeaturesSectionComponent,
     PricingSectionComponent,
     TestimonialsComponent,
-    ContactSectionComponent,
-    FooterComponent
+    ContactSectionComponent
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
