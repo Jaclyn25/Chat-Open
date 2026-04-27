@@ -1,0 +1,80 @@
+<div class="playground-layout">
+  <app-navbar />
+
+  <main class="playground-container">
+    <div class="chat-interface">
+      
+      <!-- Header -->
+      <div class="chat-header">
+        <div class="model-selector">
+          <div class="model-badge">Neural Core v2</div>
+        </div>
+        <div class="chat-actions">
+          <button class="icon-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Export
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="messages-container" #scrollContainer>
+        @for (msg of messages(); track msg.id) {
+          <div class="message" [class.message--user]="msg.sender === 'user'">
+            <div class="message__avatar">
+              @if (msg.sender === 'bot') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              }
+            </div>
+            
+            <div class="message__content">
+              @if (msg.sender === 'bot') {
+                <span class="sender-name">ChatOPni Core</span>
+              } @else {
+                <span class="sender-name">You</span>
+              }
+              <div class="message__text">
+                {{ msg.text }}<span *ngIf="msg.isTyping" class="cursor-blink">|</span>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (isTyping()) {
+          <div class="message typing-indicator-msg">
+            <div class="message__avatar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="message__content">
+              <span class="sender-name">ChatOPni Core</span>
+              <div class="typing-indicator">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <form class="input-form" (submit)="sendMessage(); $event.preventDefault()">
+          <input 
+            type="text" 
+            [(ngModel)]="userInput" 
+            name="prompt" 
+            placeholder="Ask ChatOPni anything... or use '/' for commands" 
+            autocomplete="off"
+            [disabled]="isTyping()" />
+          
+          <button type="submit" [disabled]="!userInput() || isTyping()" class="send-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+        <p class="disclaimer">ChatOPni can make mistakes. Verify important information.</p>
+      </div>
+
+    </div>
+  </main>
+</div>

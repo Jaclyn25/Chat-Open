@@ -1,0 +1,82 @@
+<app-navbar />
+
+<main class="page-container">
+  @if (feature(); as f) {
+    <!-- Dynamic Header -->
+    <section class="feature-hero" [style.--feature-color]="f.color">
+      <div class="feature-hero__badge">
+        <div class="feature-hero__icon">
+          @switch (f.icon) {
+            @case ('brain') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            }
+            @case ('bolt') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            }
+          }
+        </div>
+        <span>{{ f.name }} Module</span>
+      </div>
+      <h1 class="feature-hero__title">{{ f.shortDescription }}</h1>
+      <p class="feature-hero__desc">{{ f.fullDescription }}</p>
+
+      <div class="feature-hero__actions">
+        <app-custom-button variant="primary">Install Module</app-custom-button>
+        <app-custom-button variant="secondary" routerLink="/playground">Open Playground</app-custom-button>
+      </div>
+    </section>
+
+    <!-- Technical Docs & Use Cases -->
+    <div class="feature-content">
+      
+      <!-- Tech Docs -->
+      <div class="feature-docs">
+        <h2>Technical Setup</h2>
+        <div class="docs-block">
+          <h3>Installation</h3>
+          <div class="code-window">
+            @for (cmd of f.technicalDocs.setup; track cmd) {
+              <div class="code-line">
+                <span class="code-prompt">$</span>
+                <span class="code-text">{{ cmd }}</span>
+              </div>
+            }
+          </div>
+          
+          <h3>Requirements</h3>
+          <ul class="requirements-list">
+            @for (req of f.technicalDocs.requirements; track req) {
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                {{ req }}
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Use Cases -->
+      <div class="feature-usecases">
+        <h2>Primary Use Cases</h2>
+        <div class="usecase-grid">
+          @for (uc of f.useCases; track uc.title) {
+            <div class="usecase-card">
+              <h3>{{ uc.title }}</h3>
+              <p>{{ uc.description }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  } @else {
+    <!-- Not Found State -->
+    <div class="not-found">
+      <h1>Feature not recognized</h1>
+      <p>The module you're looking for doesn't exist.</p>
+      <app-custom-button variant="outline" routerLink="/features">Back to explorer</app-custom-button>
+    </div>
+  }
+</main>
+
+<app-footer />

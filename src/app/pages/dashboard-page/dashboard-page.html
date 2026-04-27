@@ -1,0 +1,78 @@
+<app-navbar />
+
+<main class="page-container">
+  @if (user(); as u) {
+    <!-- Dashboard Header -->
+    <header class="dash-header">
+      <div class="dash-header__profile">
+        <div class="avatar">{{ u.name.charAt(0) }}</div>
+        <div>
+          <h1 class="dash-header__name">Welcome back, {{ u.name.split(' ')[0] }}</h1>
+          <div class="dash-badge">{{ u.plan }} Plan</div>
+        </div>
+      </div>
+      <div class="dash-header__actions">
+        <app-custom-button variant="secondary" routerLink="/profile">Settings</app-custom-button>
+        <app-custom-button variant="primary" routerLink="/playground">New Chat</app-custom-button>
+      </div>
+    </header>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <h3>{{ u.stats.totalChats }}</h3>
+          <p>Total Conversations</p>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-card__icon" style="color: #4ade80">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <h3>{{ u.stats.apiCallsThisMonth.toLocaleString() }}</h3>
+          <p>API Calls This Month</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__icon" style="color: #f59e0b">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <div>
+          <h3>Active</h3>
+          <p>Subscription Status</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent History -->
+    <div class="history-section">
+      <div class="history-header">
+        <h2>Recent Sessions</h2>
+        <a href="javascript:void(0)" class="view-all">View all</a>
+      </div>
+
+      <div class="history-list">
+        @for (session of recentSessions; track session.id) {
+          <div class="history-item">
+            <div class="history-item__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="history-item__content">
+              <h4>{{ session.title }}</h4>
+              <span>{{ session.date | date:'short' }} · {{ session.messageCount }} messages</span>
+            </div>
+            <button class="history-item__action">Resume</button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</main>
+
+<app-footer />

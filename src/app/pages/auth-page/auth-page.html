@@ -1,0 +1,92 @@
+<div class="auth-page">
+  <div class="auth-page__split">
+    
+    <!-- Left form side -->
+    <div class="auth-page__form-side">
+      <div class="form-container">
+        
+        <div class="auth-header">
+          <div class="logo">
+            <div class="logo__pulse"></div>
+            ChatOPni
+          </div>
+          <h1 class="auth-title">{{ isLogin() ? 'Welcome back' : 'Create an account' }}</h1>
+          <p class="auth-subtitle">
+            {{ isLogin() ? 'Enter your details to access the dashboard.' : 'Start integrating AI into your workflow today.' }}
+          </p>
+        </div>
+
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="auth-form">
+          <app-input-group
+            id="email"
+            label="Work Email"
+            type="email"
+            placeholder="sarah@acmecorp.com"
+            formControlName="email"
+            [required]="true"
+            [error]="authForm.get('email')?.invalid || false"
+            errorMessage="Please enter a valid work email.">
+          </app-input-group>
+
+          <app-input-group
+            id="password"
+            label="Password"
+            [type]="showPassword() ? 'text' : 'password'"
+            placeholder="••••••••"
+            formControlName="password"
+            [required]="true"
+            [error]="authForm.get('password')?.invalid || false"
+            errorMessage="Password must be at least 8 characters.">
+            
+            <button right-icon type="button" class="password-toggle" (click)="toggleShowPassword()">
+              @if (showPassword()) {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              }
+            </button>
+            
+          </app-input-group>
+
+          @if (isLogin()) {
+            <a href="javascript:void(0)" class="forgot-password">Forgot password?</a>
+          }
+
+          <app-custom-button 
+            type="submit" 
+            variant="primary" 
+            [fullWidth]="true"
+            [isLoading]="isLoading()">
+            {{ isLogin() ? 'Sign in' : 'Create account' }}
+          </app-custom-button>
+        </form>
+
+        <div class="auth-footer">
+          {{ isLogin() ? "Don't have an account?" : "Already have an account?" }}
+          <a href="javascript:void(0)" (click)="toggleMode()">
+            {{ isLogin() ? 'Sign up' : 'Log in' }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right visual side -->
+    <div class="auth-page__visual-side">
+      <div class="visual__bg"></div>
+      <div class="visual__content">
+        <blockquote>
+          "ChatOPni's neural engine reduced our engineering response times by 300%. The contextual memory is simply unmatched in the market."
+        </blockquote>
+        <div class="quote-author">
+          <div class="author-avatar"></div>
+          <div>
+            <h4>Elena Rodriguez</h4>
+            <p>CTO at ScaleTech</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

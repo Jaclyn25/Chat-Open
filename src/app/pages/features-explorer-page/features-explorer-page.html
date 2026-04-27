@@ -1,0 +1,35 @@
+<app-navbar />
+
+<main class="page-container">
+  <div class="explorer-header">
+    <div class="explorer-badge">The Platform</div>
+    <h1 class="explorer-title">Features Explorer</h1>
+    <p class="explorer-subtitle">
+      Discover the capabilities that power the next generation of conversational AI. Designed for power, built for speed.
+    </p>
+  </div>
+
+  <div class="features-grid">
+    @for (feature of allFeatures(); track feature.id) {
+      <a [routerLink]="['/features', feature.id]" class="feature-card">
+        <div class="feature-card__icon" [style.color]="feature.color">
+          @switch (feature.icon) {
+            @case ('brain') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            }
+            @case ('bolt') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            }
+          }
+        </div>
+        <h3 class="feature-card__title">{{ feature.name }}</h3>
+        <p class="feature-card__desc">{{ feature.shortDescription }}</p>
+        <div class="feature-card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+    }
+  </div>
+</main>
+
+<app-footer />

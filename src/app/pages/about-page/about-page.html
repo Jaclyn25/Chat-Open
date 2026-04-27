@@ -1,0 +1,115 @@
+<app-navbar />
+
+<main class="about-page">
+  <!-- Mission & Vision Hero -->
+  <section class="about__hero fade-section" #fadeEl>
+    <div class="about__container">
+      <div class="inline-badge">Mission & Vision</div>
+      <h1 class="about__title">Making conversational intelligence <span class="text-gradient">human-centric</span>.</h1>
+      <p class="about__subtitle">ChatOPni was established to bridge the gap between complex neural networks and intuitive enterprise tooling. We believe AI should be securely accessible to every team without compromising on privacy.</p>
+    </div>
+  </section>
+
+  <!-- The Story Timeline -->
+  <section class="about__section bg-panel fade-section" #fadeEl>
+    <div class="about__container">
+      <h2 class="section-title">The Story</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Concept Phase</span>
+            <h3 class="timeline-step">Bridging the Gap</h3>
+            <p>Identified the critical need for a B2B SaaS platform that respects corporate boundaries while offering GPT-4 tier interactions natively.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Development</span>
+            <h3 class="timeline-step">Clean Architecture</h3>
+            <p>Engineered the core logic utilizing .NET 8 for high concurrency pipelines and Angular 18 Signals for a flawless reactive UI layer.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker timeline-marker--active"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Launch</span>
+            <h3 class="timeline-step text-gradient">The Initial Release</h3>
+            <p>Deploying the foundation. Focusing on UX stability, secure endpoints, and scaling via containerized architectural blueprints.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Team -->
+  <section class="about__section fade-section" #fadeEl>
+    <div class="about__container">
+      <h2 class="section-title">The Visionaries</h2>
+      <div class="team-grid">
+        @for (member of team; track member.name) {
+          <div class="team-card" [class.team-card--founder]="member.isFounder">
+            <div class="team-card__image-wrapper">
+              <img [src]="member.photoUrl" [alt]="member.name" class="team-card__img" />
+              @if (member.isFounder) {
+                <div class="founder-badge">Founder Project</div>
+              }
+            </div>
+            <div class="team-card__info">
+              <h3 class="team-card__name">{{ member.name }}</h3>
+              <p class="team-card__role">{{ member.role }}</p>
+              
+              <div class="team-card__social">
+                <a href="#" class="social-icon" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                <a href="#" class="social-icon" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="about__section bg-panel" #fadeEl>
+    <div class="about__container">
+      <h2 class="section-title">Our Core Values</h2>
+      <div class="values-grid">
+        @for (value of values; track value.title) {
+          <div class="value-card">
+            <div class="value-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path [attr.d]="value.icon" />
+              </svg>
+            </div>
+            <h3 class="value-card__title">{{ value.title }}</h3>
+            <p class="value-card__desc">{{ value.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="about__section tech-section fade-section" #fadeEl>
+    <div class="about__container text-center">
+      <h2 class="section-title text-center">Engineered with Precision</h2>
+      <p class="section-desc">We leverage enterprise-grade compiling tools to ensure instantaneous latency flows.</p>
+      
+      <div class="tech-row">
+        @for (tech of techStack; track tech.name) {
+          <div class="tech-badge" [ngClass]="tech.bgColor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path [attr.d]="tech.svg"/></svg>
+            <span>{{ tech.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer />
