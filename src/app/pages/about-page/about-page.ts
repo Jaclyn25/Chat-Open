@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChildren, QueryList, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar';
-import { FooterComponent } from '../../components/footer/footer';
+
 
 interface ITeamMember {
   name: string;
@@ -25,7 +25,7 @@ interface ITechBadge {
 @Component({
   selector: 'app-about-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './about-page.html',
   styleUrl: './about-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush

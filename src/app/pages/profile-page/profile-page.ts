@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NavbarComponent } from '../../components/navbar/navbar';
-import { FooterComponent } from '../../components/footer/footer';
+
 import { InputGroupComponent } from '../../components/shared/input-group/input-group';
 import { CustomButtonComponent } from '../../components/shared/custom-button/custom-button';
 
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, FooterComponent, InputGroupComponent, CustomButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, InputGroupComponent, CustomButtonComponent],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush

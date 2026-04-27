@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar';
-import { FooterComponent } from '../../components/footer/footer';
+
 import { InputGroupComponent } from '../../components/shared/input-group/input-group';
 import { CustomButtonComponent } from '../../components/shared/custom-button/custom-button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 @Component({
   selector: 'app-pricing-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, FooterComponent, InputGroupComponent, CustomButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, InputGroupComponent, CustomButtonComponent],
   templateUrl: './pricing-page.html',
   styleUrl: './pricing-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush
