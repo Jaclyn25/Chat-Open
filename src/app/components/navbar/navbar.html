@@ -1,7 +1,7 @@
 <header class="navbar" [class.navbar--solid]="isScrolled()">
   <nav class="navbar__inner">
     <!-- Logo -->
-    <button class="navbar__logo" (click)="scrollTo('hero')" aria-label="ChatOPni home">
+    <a routerLink="/" class="navbar__logo" (click)="mobileOpen.set(false)" aria-label="ChatOPni home">
       <div class="navbar__logo-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -9,21 +9,27 @@
         </svg>
       </div>
       <span class="navbar__brand">Chat<span class="navbar__brand-accent">OPni</span></span>
-    </button>
+    </a>
 
     <!-- Desktop links -->
     <ul class="navbar__links" role="list">
-      @for (link of navLinks; track link.id) {
+      @for (link of navLinks; track link.route) {
         <li>
-          <button class="navbar__link" (click)="scrollTo(link.id)">{{ link.label }}</button>
+          <a [routerLink]="link.route" 
+             routerLinkActive="navbar__link--active"
+             [routerLinkActiveOptions]="{exact: link.route === '/'}"
+             class="navbar__link" 
+             (click)="mobileOpen.set(false)">
+            {{ link.label }}
+          </a>
         </li>
       }
     </ul>
 
     <!-- Desktop CTA -->
     <div class="navbar__actions">
-      <button class="navbar__login" (click)="scrollTo('pricing')">Log in</button>
-      <button class="navbar__cta" (click)="scrollTo('contact')">Get Started</button>
+      <a routerLink="/auth" class="navbar__login">Log in</a>
+      <app-custom-button variant="primary" routerLink="/auth">Get Started</app-custom-button>
     </div>
 
     <!-- Mobile burger -->
@@ -39,11 +45,21 @@
   @if (mobileOpen()) {
     <div class="navbar__drawer" role="navigation">
       <ul role="list">
-        @for (link of navLinks; track link.id) {
-          <li><button class="navbar__drawer-link" (click)="scrollTo(link.id)">{{ link.label }}</button></li>
+        @for (link of navLinks; track link.route) {
+          <li>
+            <a [routerLink]="link.route"
+               routerLinkActive="navbar__drawer-link--active"
+               [routerLinkActiveOptions]="{exact: link.route === '/'}"
+               class="navbar__drawer-link" 
+               (click)="mobileOpen.set(false)">
+              {{ link.label }}
+            </a>
+          </li>
         }
       </ul>
-      <button class="navbar__cta navbar__cta--block" (click)="scrollTo('contact')">Get Started</button>
+      <app-custom-button style="margin-top: 1rem; width: 100%;" variant="primary" routerLink="/auth" (click)="mobileOpen.set(false)">
+        Get Started
+      </app-custom-button>
     </div>
   }
 </header>

@@ -6,20 +6,24 @@ import {
   PLATFORM_ID,
   signal
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CustomButtonComponent } from '../shared/custom-button/custom-button';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive, CustomButtonComponent],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
   readonly navLinks = [
-    { label: 'Features', id: 'features' },
-    { label: 'Pricing',  id: 'pricing'  },
-    { label: 'Contact',  id: 'contact'  }
+    { label: 'Home',     route: '/' },
+    { label: 'Features', route: '/features' },
+    { label: 'Pricing',  route: '/pricing'  },
+    { label: 'About',    route: '/about' }
   ];
 
   isScrolled  = signal(false);

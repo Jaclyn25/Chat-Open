@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  input
+  input,
+  CUSTOM_ELEMENTS_SCHEMA
 } from '@angular/core';
 import { IBentoFeature } from '../../models/feature.model';
 import { CommonModule } from '@angular/common';
-import { ChatPreviewComponent } from '../chat-preview/chat-preview';
+import { ChatPreviewComponent } from './../chat-preview/chat-preview';
 
 @Component({
   selector: 'app-bento-advanced',
@@ -13,7 +14,8 @@ import { ChatPreviewComponent } from '../chat-preview/chat-preview';
   imports: [CommonModule, ChatPreviewComponent],
   templateUrl: './bento-advanced.html',
   styleUrl: './bento-advanced.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BentoAdvancedComponent {
   readonly feature = input.required<IBentoFeature>();

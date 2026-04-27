@@ -83,7 +83,7 @@
   font-family: inherit;
 }
 
-.navbar__link:hover { color: #f0f0f5; }
+.navbar__link:hover, .navbar__link--active { color: #00d1ff; font-weight: 500; }
 
 /* Desktop CTA */
 .navbar__actions {
@@ -174,7 +174,7 @@
   cursor: pointer;
   transition: color 0.2s;
 }
-.navbar__drawer-link:hover { color: #f0f0f5; }
+.navbar__drawer-link:hover, .navbar__drawer-link--active { color: #00d1ff; font-weight: 500; }
 
 @keyframes drawerSlide {
   from { opacity: 0; transform: translateY(-8px); }
