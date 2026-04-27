@@ -1,16 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-  scrollTo(id: string): void {
-    if (typeof document !== 'undefined') {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  currentYear = new Date().getFullYear();
+  
+  onSubscribe(event: Event) {
+    event.preventDefault();
+    // Newsletter logic
   }
 }
