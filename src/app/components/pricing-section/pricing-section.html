@@ -1,0 +1,43 @@
+<section id="pricing" class="pricing-section">
+  <div class="pricing-section__inner">
+    
+    <div #revealBlock class="pricing-section__header reveal-up">
+      <p class="pricing-section__kicker">Pricing</p>
+      <h2 class="pricing-section__title">
+        Simple, transparent <span class="glow-text--violet">pricing</span>
+      </h2>
+      <p class="pricing-section__subtitle">
+        Start free. Scale when you're ready. No hidden fees.
+      </p>
+
+      <!-- Billing Toggle -->
+      <div class="billing-toggle">
+        <button
+          (click)="setBillingCycle('monthly')"
+          class="billing-toggle__btn"
+          [class.billing-toggle__btn--active]="billingCycle() === 'monthly'"
+        >Monthly</button>
+        <button
+          (click)="setBillingCycle('yearly')"
+          class="billing-toggle__btn billing-toggle__btn--yearly"
+          [class.billing-toggle__btn--active]="billingCycle() === 'yearly'"
+        >
+          Yearly
+          <span class="billing-toggle__discount">-20%</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pricing Cards Grid -->
+    <div #revealBlock class="pricing-grid reveal-up" style="--delay: 150ms;">
+      @for (plan of plans(); track plan.name) {
+        <app-pricing-card 
+          [plan]="plan" 
+          [billingCycle]="billingCycle()"
+          (ctaClicked)="handleCtaClick($event)"
+        />
+      }
+    </div>
+
+  </div>
+</section>

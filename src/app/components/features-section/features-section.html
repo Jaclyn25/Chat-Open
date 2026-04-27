@@ -1,0 +1,50 @@
+<section id="features" class="features-section">
+  <div class="features-section__inner">
+    
+    <div #revealBlock class="features-section__header reveal-up">
+      <p class="features-section__kicker">Capabilities</p>
+      <h2 class="features-section__title">
+        Everything your team needs to <span class="glow-text">ship AI</span>
+      </h2>
+      <p class="features-section__subtitle">
+        From contextual conversations to compliance base controls — purpose-built for teams who move fast.
+      </p>
+    </div>
+
+    <!-- The Bento Grid Container -->
+    <div #revealBlock class="bento-layout reveal-up" style="--delay: 150ms;">
+      
+      <!-- Top Row: 2 Basic Features -->
+      @for (feature of basicFeatures().slice(0, 2); track feature.title) {
+        <div class="bento-cell bento-cell--wide">
+          <app-feature-card [feature]="feature" />
+        </div>
+      }
+
+      <!-- Middle Row: 3 Basic Features -->
+      @for (feature of basicFeatures().slice(2, 5); track feature.title) {
+        <div class="bento-cell">
+          <app-feature-card [feature]="feature" />
+        </div>
+      }
+
+      <!-- Bottom Grid: Advanced Visual Bento Tiles -->
+      <div class="bento-cell bento-cell--half">
+        <app-bento-advanced [feature]="advancedFeatures()[0]" /> <!-- Analytics -->
+      </div>
+      
+      <div class="bento-cell bento-cell--half">
+        <app-bento-advanced [feature]="advancedFeatures()[1]" /> <!-- MultiLang -->
+      </div>
+      
+      <div class="bento-cell bento-cell--half">
+        <app-bento-advanced [feature]="advancedFeatures()[2]" /> <!-- Integrations -->
+      </div>
+      
+      <div class="bento-cell bento-cell--half">
+        <app-bento-advanced [feature]="advancedFeatures()[3]" /> <!-- Chat Preview -->
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<div class="pricing-card" [class.pricing-card--popular]="plan().highlight">
+  @if (plan().highlight) {
+    <div class="pricing-card__badge">Most Popular</div>
+  }
+  
+  <div class="pricing-card__inner">
+    <h3 class="pricing-card__name">{{ plan().name }}</h3>
+    <p class="pricing-card__desc">{{ plan().description }}</p>
+    
+    <div class="pricing-card__price-wrapper">
+      <span class="pricing-card__price">${{ currentPrice() }}</span>
+      <span class="pricing-card__period">/mo</span>
+    </div>
+    
+    <ul class="pricing-card__features" role="list">
+      @for (feat of plan().features; track feat) {
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               [class.text-accent-blue]="!plan().highlight"
+               [class.text-accent-violet]="plan().highlight">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          {{ feat }}
+        </li>
+      }
+    </ul>
+    
+    <button class="pricing-card__cta" 
+            [class.pricing-card__cta--primary]="plan().highlight"
+            [class.pricing-card__cta--secondary]="!plan().highlight"
+            (click)="onCtaClick()">
+      {{ plan().cta }}
+    </button>
+  </div>
+</div>

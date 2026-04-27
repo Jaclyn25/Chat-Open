@@ -1,0 +1,59 @@
+<div class="bento-tile" [class]="'bento-tile--' + feature().type">
+  <div class="bento-tile__visual">
+
+    <!-- Analytics Pulse/Bars -->
+    @if (feature().type === 'analytics') {
+      <div class="bento-analytics">
+        <div class="bar bar-1"></div>
+        <div class="bar bar-2"></div>
+        <div class="bar bar-3"></div>
+        <div class="bar bar-4"></div>
+        <div class="bar bar-5"></div>
+      </div>
+    }
+
+    <!-- Multi Language Globe -->
+    @if (feature().type === 'multilang') {
+      <div class="bento-multilang">
+        <svg viewBox="0 0 100 100" class="globe-svg">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+          <ellipse cx="50" cy="50" rx="20" ry="40" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+          <path d="M10 50 h80" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+        </svg>
+        <div class="lang-dot dot-1">EN</div>
+        <div class="lang-dot dot-2">ES</div>
+        <div class="lang-dot dot-3">JP</div>
+      </div>
+    }
+
+    <!-- Integrations Marquee -->
+    @if (feature().type === 'integrations') {
+      <div class="bento-integrations">
+        <div class="marquee">
+          <div class="marquee__track">
+            <!-- Repeated logos for infinite illusion -->
+            @for (i of [1,2,3]; track i) {
+              <div class="logo-box logo-slack">Slack</div>
+              <div class="logo-box logo-discord">Discord</div>
+              <div class="logo-box logo-whatsapp">WhatsApp</div>
+              <div class="logo-box logo-teams">Teams</div>
+              <div class="logo-box logo-zapier">Zapier</div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Chat Preview Embedded Component -->
+    @if (feature().type === 'chat') {
+      <div class="bento-chat">
+        <app-chat-preview />
+      </div>
+    }
+  </div>
+
+  <div class="bento-tile__content">
+    <h3 class="bento-tile__title">{{ feature().title }}</h3>
+    <p class="bento-tile__subtitle">{{ feature().subtitle }}</p>
+  </div>
+</div>

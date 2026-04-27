@@ -1,0 +1,145 @@
+:host { display: block; height: 100%; }
+
+.bento-tile {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-glass);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bento-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.bento-tile__visual {
+  flex: 1;
+  min-height: 160px;
+  max-height: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.3);
+  border-bottom: 1px solid var(--color-border-glass);
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.bento-tile__content {
+  padding: 1.5rem;
+  background: var(--color-bg-card);
+}
+
+.bento-tile__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f0f0f5;
+  margin-bottom: 0.25rem;
+}
+
+.bento-tile__subtitle {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* --- Analytics Bars --- */
+.bento-analytics {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+}
+
+.bar {
+  width: 24px;
+  background: linear-gradient(to top, var(--color-accent-blue-dim), var(--color-accent-blue));
+  border-radius: 4px 4px 0 0;
+  animation: barPulse 2s ease-in-out infinite alternate;
+}
+
+.bar-1 { height: 40%; animation-delay: 0.0s; }
+.bar-2 { height: 70%; animation-delay: 0.2s; }
+.bar-3 { height: 50%; animation-delay: 0.4s; }
+.bar-4 { height: 90%; animation-delay: 0.6s; }
+.bar-5 { height: 60%; animation-delay: 0.8s; }
+
+@keyframes barPulse {
+  0% { transform: scaleY(0.85); opacity: 0.8; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* --- MultiLang Globe --- */
+.bento-multilang {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  color: var(--color-accent-violet);
+  animation: orbitRotate 15s linear infinite;
+}
+.globe-svg { width: 100%; height: 100%; }
+
+.lang-dot {
+  position: absolute;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-accent-violet);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: bold; color: #fff;
+  animation: orbitCounterRotate 15s linear infinite;
+}
+
+.dot-1 { top: -10px; left: 44px; }
+.dot-2 { bottom: 10px; left: -10px; }
+.dot-3 { bottom: 10px; right: -10px; }
+
+@keyframes orbitRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes orbitCounterRotate { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+
+/* --- Integrations Marquee --- */
+.bento-integrations {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+}
+
+.marquee {
+  width: max-content;
+  display: flex;
+}
+
+.marquee__track {
+  display: flex;
+  gap: 1.5rem;
+  padding-left: 1.5rem;
+  animation: marqueeScroll 20s linear infinite;
+}
+
+.logo-box {
+  width: 100px;
+  height: 48px;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600; color: #9ca3af;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% / 3)); }
+}
+
+/* --- Chat Preview Subcomponent Styles Handled Elsewhere --- */
+.bento-chat {
+  width: 100%;
+  height: 100%;
+  /* Removed absolute positioning constraint to allow chat preview to flow normally */
+}

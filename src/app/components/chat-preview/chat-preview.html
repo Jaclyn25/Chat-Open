@@ -1,0 +1,34 @@
+<div class="chat-preview">
+  <div class="chat-preview__header">
+    <div class="chat-preview__bot-identity">
+      <div class="chat-preview__avatar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="m2 14 6-6 6 6"/></svg>
+      </div>
+      <div>
+        <span class="chat-preview__bot-name">ChatOPni</span>
+        <span class="chat-preview__status"><span class="status-dot"></span> Online</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-preview__body">
+    @if (!hasMessages()) {
+      <div class="chat-preview__empty">Starting conversation...</div>
+    }
+
+    @for (msg of messages(); track msg.id) {
+      <div class="chat-bubble" [class.chat-bubble--bot]="msg.sender === 'bot'" [class.chat-bubble--user]="msg.sender === 'user'">
+        <p>{{ msg.text }}</p>
+        @if (msg.isTyping) {
+          <span class="cursor">|</span>
+        }
+      </div>
+    }
+
+    @if (isTyping()) {
+      <div class="typing-indicator">
+        <span></span><span></span><span></span>
+      </div>
+    }
+  </div>
+</div>

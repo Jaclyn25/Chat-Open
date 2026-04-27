@@ -1,0 +1,49 @@
+<header class="navbar" [class.navbar--solid]="isScrolled()">
+  <nav class="navbar__inner">
+    <!-- Logo -->
+    <button class="navbar__logo" (click)="scrollTo('hero')" aria-label="ChatOPni home">
+      <div class="navbar__logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <span class="navbar__brand">Chat<span class="navbar__brand-accent">OPni</span></span>
+    </button>
+
+    <!-- Desktop links -->
+    <ul class="navbar__links" role="list">
+      @for (link of navLinks; track link.id) {
+        <li>
+          <button class="navbar__link" (click)="scrollTo(link.id)">{{ link.label }}</button>
+        </li>
+      }
+    </ul>
+
+    <!-- Desktop CTA -->
+    <div class="navbar__actions">
+      <button class="navbar__login" (click)="scrollTo('pricing')">Log in</button>
+      <button class="navbar__cta" (click)="scrollTo('contact')">Get Started</button>
+    </div>
+
+    <!-- Mobile burger -->
+    <button class="navbar__burger" (click)="toggleMenu()" aria-label="Toggle navigation"
+            [attr.aria-expanded]="mobileOpen()">
+      <span [class.open-1]="mobileOpen()"></span>
+      <span [class.open-2]="mobileOpen()"></span>
+      <span [class.open-3]="mobileOpen()"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  @if (mobileOpen()) {
+    <div class="navbar__drawer" role="navigation">
+      <ul role="list">
+        @for (link of navLinks; track link.id) {
+          <li><button class="navbar__drawer-link" (click)="scrollTo(link.id)">{{ link.label }}</button></li>
+        }
+      </ul>
+      <button class="navbar__cta navbar__cta--block" (click)="scrollTo('contact')">Get Started</button>
+    </div>
+  }
+</header>

@@ -1,0 +1,51 @@
+<section id="contact" class="contact-section">
+  <div class="contact-section__inner">
+    
+    <div #revealBlock class="contact__header reveal-up">
+      <h2 class="contact__title">Ready to upgrade your team?</h2>
+      <p class="contact__subtitle">
+        Join leading companies using ChatOPni right now. Fill out the form, and our integration team will be with you shortly.
+      </p>
+    </div>
+
+    <div #revealBlock class="contact__form-wrapper reveal-up" style="--delay: 150ms;">
+      @if (formSubmitted()) {
+        <div class="contact__success">
+          <div class="contact__success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <h3>Message Received</h3>
+          <p>We'll be in touch with next steps within 2 hours.</p>
+        </div>
+      } @else {
+        <form [formGroup]="contactForm" (ngSubmit)="submitLead()" class="contact__form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" formControlName="name" placeholder="Sarah Jenkins" />
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email</label>
+              <input type="email" id="email" formControlName="email" placeholder="sarah@company.com" />
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" formControlName="company" placeholder="Acme Corp" />
+          </div>
+          
+          <div class="form-group">
+            <label for="message">How can we help?</label>
+            <textarea id="message" formControlName="message" rows="4" placeholder="Tell us about your team size, use case, and timeline..."></textarea>
+          </div>
+          
+          <button type="submit" class="contact__submit">Request Access</button>
+        </form>
+      }
+    </div>
+
+  </div>
+</section>
